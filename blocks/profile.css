@@ -1,0 +1,27 @@
+.profile {
+  font-family: "Inter", Arial, sans-serif;
+  display: flex;
+  justify-content: space-between;
+}
+
+
+.profile__avatar {
+  width: 168px;
+  max-width: 100%;
+  border-radius: 50%;
+}
+
+.profile__info {
+  display: flex;
+  justify-content: space-between;
+  /*width: 415px;*/
+  max-width: 100%;
+}
+
+.profile__details {
+  color: white;
+}
+.profile__edit {
+}
+.profile__exit {
+}
