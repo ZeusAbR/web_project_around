@@ -1,12 +1,24 @@
 .card {
+  display: flex;
+  flex-direction: column;
 }
 
 .card__element {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
   background-color: white;
+  padding: 25px;
 }
 
 .card__name {
+  font-family: "Inter", Arial, sans-serif;
   margin: 0;
 }
 .card__vector {
+  width: 21px;
+  height: 19px;
+}
+.card__image {
+  width: 100%;
 }

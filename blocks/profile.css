@@ -2,10 +2,15 @@
   font-family: "Inter", Arial, sans-serif;
   display: flex;
   justify-content: space-between;
+  max-width: 880px;
+  margin: auto;
+}
+.profile__avatar {
+  display: flex;
+  align-items: center;
 }
 
-
-.profile__avatar {
+.profile__picture {
   width: 168px;
   max-width: 100%;
   border-radius: 50%;
@@ -16,12 +21,29 @@
   justify-content: space-between;
   /*width: 415px;*/
   max-width: 100%;
+  padding: 0 30px;
+}
+.profile__name {
+  margin: 0;
 }
 
 .profile__details {
   color: white;
 }
 .profile__edit {
+  padding: 5px 10px;
 }
-.profile__exit {
+.profile__add {
+}
+
+.profile__add-button {
+}
+@media screen and (width<550px) {
+  .profile {
+    flex-direction: column;
+  }
+  .profile__add-button {
+    width: 282px;
+    height: 50px;
+  }
 }

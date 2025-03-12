@@ -1,3 +1,6 @@
 .footer__copyright {
-  color: aqua;
+  color: white;
+  max-width: 880px;
+  margin: auto;
+  padding: 15px 0px;
 }
