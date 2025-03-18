@@ -1,6 +1,7 @@
 .card {
   display: flex;
   flex-direction: column;
+  border-radius: 10px;
 }
 
 .card__element {
@@ -9,6 +10,8 @@
   align-items: center;
   background-color: white;
   padding: 25px;
+  border-bottom-left-radius: 10px;
+  border-bottom-right-radius: 10px;
 }
 
 .card__name {

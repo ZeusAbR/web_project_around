@@ -41,6 +41,16 @@
 @media screen and (width<550px) {
   .profile {
     flex-direction: column;
+    text-align: center;
+  }
+  .profile__avatar {
+    flex-direction: column;
+  }
+  .profile__name {
+    font-size: 22px;
+  }
+  .profile__description {
+    font-size: 14px;
   }
   .profile__add-button {
     width: 282px;

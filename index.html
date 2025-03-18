@@ -28,8 +28,8 @@
 
             <div class="profile__info">
               <div class="profile__details">
-                <h1 class="profile__name">Zeus AbR</h1>
-                <p>Estudiante/TripleTen</p>
+                <h1 class="profile__name">Jacques Cousteau</h1>
+                <p class="profile__description">Estudiante/TripleTen</p>
               </div>
               <div class="profile__edit">
                 <img src="./images/Edit Button.png" alt="edit button" />
@@ -37,12 +37,20 @@
             </div>
           </div>
           <div class="profile__add">
-            <img class="profile__add-button"src="./images/Add Button.png" alt="add button" />
+            <img
+              class="profile__add-button"
+              src="./images/Add Button.png"
+              alt="add button"
+            />
           </div>
         </section>
         <section class="elements">
           <div class="card">
-            <img class="card__image"src="./images/kirill-sunrise.png" alt="sunrise" />
+            <img
+              class="card__image"
+              src="./images/kirill-sunrise.png"
+              alt="sunrise"
+            />
             <div class="card__element">
               <h2 class="card__name">Montañas Calvas</h2>
               <img
@@ -53,7 +61,11 @@
             </div>
           </div>
           <div class="card">
-            <img class="card__image"src="./images/kirill-captain .jpg" alt="landscape" />
+            <img
+              class="card__image"
+              src="./images/kirill-captain .jpg"
+              alt="landscape"
+            />
             <div class="card__element">
               <h2 class="card__name">Valle de Yosemite</h2>
               <img
@@ -64,7 +76,11 @@
             </div>
           </div>
           <div class="card">
-            <img class="card__image"src="./images/kirill-bay.png" alt="beach" />
+            <img
+              class="card__image"
+              src="./images/kirill-bay.png"
+              alt="beach"
+            />
             <div class="card__element">
               <h2 class="card__name">Vanois National</h2>
               <img
@@ -75,7 +91,11 @@
             </div>
           </div>
           <div class="card">
-            <img class="card__image"src="./images/kirill-boats.png" alt="boats on lake" />
+            <img
+              class="card__image"
+              src="./images/kirill-boats.png"
+              alt="boats on lake"
+            />
             <div class="card__element">
               <h2 class="card__name">Lago di Braies</h2>
               <img
@@ -86,7 +106,11 @@
             </div>
           </div>
           <div class="card">
-            <img class="card__image"src="./images/kirill-lake.png" alt="lake" />
+            <img
+              class="card__image"
+              src="./images/kirill-lake.png"
+              alt="lake"
+            />
             <div class="card__element">
               <h2 class="card__name">Lago Louise</h2>
               <img
@@ -97,7 +121,11 @@
             </div>
           </div>
           <div class="card">
-            <img class="card__image"src="./images/kirill-stars.png" alt="landscape" />
+            <img
+              class="card__image"
+              src="./images/kirill-stars.png"
+              alt="landscape"
+            />
             <div class="card__element">
               <h2 class="card__name">Latemar</h2>
               <img
@@ -113,9 +141,33 @@
         <p class="footer__copyright">© 2024. Zeus Bernaga</p>
       </footer>
     </div>
-<div class="popup">
-    <div class="popup__form">
-    </div>
+    <div class="popup">
+      <div class="popup__container">
+        <img
+          class="popup__close"
+          src="./images/Close Icon.png"
+          alt="close icon"
+        />
+        <h2 class="popup__title">Editar perfil</h2>
+
+        <form class="popup__form">
+          <input
+            class="popup__input"
+            type="text"
+            id="name"
+            name="name"
+            placeholder="Nombre"
+          />
+          <input
+            class="popup__input"
+            type="text"
+            id="info "
+            name="info"
+            placeholder="Acerca de mi"
+          />
+          <button class="popup__button">Guardar</button>
+        </form>
+      </div>
     </div>
     <script src="./pages/index.js"></script>
   </body>
