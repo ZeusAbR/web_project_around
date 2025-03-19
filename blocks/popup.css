@@ -1,7 +1,7 @@
 .popup {
   display: none;
 
-position: fixed;
+  position: fixed;
   top: 0;
   left: 0;
   width: 100%;
@@ -25,7 +25,7 @@ position: fixed;
 .popup__close {
   position: absolute;
   top: -40px;
-  right: -40px; /*debe haaber una funcio que sin utilizar px la posicione hasta la derecha*/
+  right: -40px;
 }
 .popup__title {
   font-family: Inter;
@@ -36,14 +36,11 @@ position: fixed;
   justify-content: center;
   max-width: 358px;
   margin: 24px auto;
-
-  /*align-items: center; pense que esta funcion y hacer el div padre en flex lo centraria pero rompio el encuadre */
 }
 
 .popup__form {
   display: flex;
   flex-direction: column;
-  /* justify-content: center; */
   align-items: center;
 
   font-family: Inter;
@@ -70,6 +67,7 @@ position: fixed;
   text-align: center;
   width: 358px;
   color: #c4c4c4;
+  /* background-color: black; debe cambiar a negro cuando se ingresen los datos  */
   padding: 14px 0;
   border-radius: 2px;
 }

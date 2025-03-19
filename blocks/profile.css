@@ -34,10 +34,15 @@
   padding: 5px 10px;
 }
 .profile__add {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* crea que vuelva a un tamano pequeno pero lo centra */
 }
 
 .profile__add-button {
 }
+
 @media screen and (width<550px) {
   .profile {
     flex-direction: column;
