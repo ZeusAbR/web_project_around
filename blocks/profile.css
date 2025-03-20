@@ -19,7 +19,6 @@
 .profile__info {
   display: flex;
   justify-content: space-between;
-  /*width: 415px;*/
   max-width: 100%;
   padding: 0 30px;
 }
@@ -37,7 +36,6 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  /* crea que vuelva a un tamano pequeno pero lo centra */
 }
 
 .profile__add-button {
