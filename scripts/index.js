@@ -5,7 +5,6 @@ const closePopup = document.querySelector(".popup__close");
 
 const popup = document.querySelector(".popup");
 
-
 const newNameInput = document.querySelector("#name");
 const newJobInput = document.querySelector("#info");
 
@@ -22,9 +21,11 @@ closePopup.addEventListener("click", function () {
   popup.classList.remove("popup__open");
 });
 
-console.log(newJobInput);
 formButton.addEventListener("click", function (evt) {
-  evt.preventDefault(); 
+  evt.preventDefault();
   profileName.textContent = newNameInput.value;
   profileDescription.textContent = newJobInput.value;
+  popup.classList.remove("popup__open");
 });
+
+
