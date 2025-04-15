@@ -84,8 +84,23 @@ initialCards.forEach((itemCard) => {
       likeButton.src = "./images/Vectorlike.png";
     }
   });
+  const trashButton = card.querySelector("#trash-button");
+  trashButton.addEventListener("click", function () {
+    card.remove();
+  });
+
+  const popupDisplay = document.querySelector("#popup-display");
+  cardImage.addEventListener("click", function () {
+    popupDisplay.classList.add("popup__open");
+  });
+
   const container = document.querySelector(".elements"); //etiqueta padre//
   container.append(card);
+});
+
+const popupCloseDisplay = document.querySelector("#popup-close-display"); //llama al boton x y ejecuta remover el popup mediante la clase//
+popupCloseDisplay.addEventListener("click", function () {
+  popupDisplay.classList.remove("popup__open");
 });
 
 //tarjetas nuevas que salieron del popup//
@@ -98,22 +113,7 @@ formButtonAdd.addEventListener("click", function (evt) {
   cardName.textContent = nuevoTitulo.value;
   const cardImage = card.querySelector(".card__image");
   cardImage.src = nuevoImagen.value;
-  const likeButton = card.querySelector("#like-button");
-  likeButton.addEventListener("click", function () {
-    likeButton.src = "./images/Vectorlike.png";
-  });
-  const likeButton = card.querySelector("#like-button");
-  likeButton.addEventListener("click", function () {
-    if (likeButton.src == "http://127.0.0.1:5500/images/Vectorlike.png") {
-      likeButton.src = "./images/Vectorunlike.png";
-    } else {
-      likeButton.src = "./images/Vectorlike.png";
-    }
-  });
+
   const container = document.querySelector(".elements");
   container.append(card);
-
-  popupAdd.classList.remove("popup__open");
 });
-
-const trashButton = card.querySelector("#trash-button");
