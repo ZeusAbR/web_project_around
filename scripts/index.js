@@ -40,6 +40,11 @@ closePopupAdd.addEventListener("click", function () {
   popupAdd.classList.remove("popup__open");
 }); //cierra desde x al popup//
 
+const popupDisplay = document.querySelector("#popup-display");
+
+const popupImage = document.querySelector(".popup__image");
+const popupParrafo = document.querySelector(".popup__parrafo");
+
 const initialCards = [
   {
     name: "Valle de Yosemite",
@@ -89,9 +94,10 @@ initialCards.forEach((itemCard) => {
     card.remove();
   });
 
-  const popupDisplay = document.querySelector("#popup-display");
   cardImage.addEventListener("click", function () {
     popupDisplay.classList.add("popup__open");
+    popupImage.src = itemCard.link;
+    popupParrafo.textContent = itemCard.name;
   });
 
   const container = document.querySelector(".elements"); //etiqueta padre//
@@ -113,7 +119,26 @@ formButtonAdd.addEventListener("click", function (evt) {
   cardName.textContent = nuevoTitulo.value;
   const cardImage = card.querySelector(".card__image");
   cardImage.src = nuevoImagen.value;
+  const likeButton = card.querySelector("#like-button");
+  likeButton.addEventListener("click", function () {
+    if (likeButton.src == "http://127.0.0.1:5500/images/Vectorlike.png") {
+      likeButton.src = "./images/Vectorunlike.png";
+    } else {
+      likeButton.src = "./images/Vectorlike.png";
+    }
+  });
+  const trashButton = card.querySelector("#trash-button");
+  trashButton.addEventListener("click", function () {
+    card.remove();
+  });
+
+  cardImage.addEventListener("click", function () {
+    popupDisplay.classList.add("popup__open");
+    popupImage.src = nuevoImagen.value;
+    popupParrafo.textContent = nuevoImagen.value;
+  });
 
   const container = document.querySelector(".elements");
   container.append(card);
+  popupAdd.classList.remove("popup__open");
 });
