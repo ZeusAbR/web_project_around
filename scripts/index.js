@@ -1,15 +1,21 @@
 const openButton = document.querySelector(".profile__edit");
 const closePopupPerfil = document.querySelector("#popup-close-perfil");
-
 const popup = document.querySelector("#popup-perfil");
-
 const newNameInput = document.querySelector("#name");
 const newJobInput = document.querySelector("#info");
-
 const profileName = document.querySelector(".profile__name");
 const profileDescription = document.querySelector(".profile__description");
-
 const formButtonProfile = document.querySelector("#popupButtonProfile");
+
+const openNewPlace = document.querySelector(".profile__add");
+const newTitle = document.querySelector("#title");
+const newImage = document.querySelector("#url");
+const popupAdd = document.querySelector("#popup-add");
+const closePopupAdd = document.querySelector("#popup-close-add");
+
+const popupDisplay = document.querySelector("#popup-display");
+const popupImage = document.querySelector(".popup__image");
+const popupParrafo = document.querySelector(".popup__parrafo");
 
 openButton.addEventListener("click", function () {
   popup.classList.add("popup__open");
@@ -26,24 +32,13 @@ formButtonProfile.addEventListener("click", function (evt) {
   popup.classList.remove("popup__open");
 });
 
-const openNuevoLugar = document.querySelector(".profile__add");
-const nuevoTitulo = document.querySelector("#Titulo");
-const nuevoImagen = document.querySelector("#url");
-const popupAdd = document.querySelector("#popup-add");
-const closePopupAdd = document.querySelector("#popup-close-add");
-
-openNuevoLugar.addEventListener("click", function () {
+openNewPlace.addEventListener("click", function () {
   popupAdd.classList.add("popup__open");
 });
 
 closePopupAdd.addEventListener("click", function () {
   popupAdd.classList.remove("popup__open");
 });
-
-const popupDisplay = document.querySelector("#popup-display");
-
-const popupImage = document.querySelector(".popup__image");
-const popupParrafo = document.querySelector(".popup__parrafo");
 
 const initialCards = [
   {
@@ -106,6 +101,7 @@ initialCards.forEach((itemCard) => {
   container.append(card);
 });
 
+// abre la img de la carta
 const popupCloseDisplay = document.querySelector("#popup-close-display");
 popupCloseDisplay.addEventListener("click", function () {
   popupDisplay.classList.remove("popup__open");
@@ -117,10 +113,10 @@ formButtonAdd.addEventListener("click", function (evt) {
   const templateCard = document.querySelector(".template").content;
   const card = templateCard.querySelector(".card").cloneNode(true);
   const cardName = card.querySelector(".card__name");
-  cardName.textContent = nuevoTitulo.value;
+  cardName.textContent = newTitle.value;
   const cardImage = card.querySelector(".card__image");
-  cardImage.src = nuevoImagen.value;
-  cardImage.alt = nuevoTitulo.value;
+  cardImage.src = newImage.value;
+  cardImage.alt = newTitle.value;
 
   const likeButton = card.querySelector("#like-button");
   likeButton.addEventListener("click", function () {
@@ -137,9 +133,9 @@ formButtonAdd.addEventListener("click", function (evt) {
 
   cardImage.addEventListener("click", function () {
     popupDisplay.classList.add("popup__open");
-    popupImage.src = nuevoImagen.value;
-    popupParrafo.textContent = nuevoTitulo.value;
-    popupImage.alt = nuevoTitulo.value;
+    popupImage.src = newImage.value;
+    popupParrafo.textContent = newTitle.value;
+    popupImage.alt = newTitle.value;
   });
 
   const container = document.querySelector(".elements");
