@@ -1,29 +1,39 @@
-//debe mostrar el msg de error si no cumple las especificaciones
 
+
+//debe mostrar el msg de error si no cumple las especificaciones
 const showInputError = (formElement, inputElement, errorMessage) => {
-  const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
-  inputElement.classList.add("form__input_type_error");
-  errorElement.textContent = errorMessage;
-  errorElement.classList.add("form__input-error_active");
+  console.log("show");
+
+  const errorElement = formElement.querySelector(`.${inputElement.id}-error`); //name-error . elemento p
+  console.log(errorElement);
+  console.log(formElement);
+  console.log(`.${inputElement.id}-error`);
+
+  inputElement.classList.add("form__input_type_error"); //en ningun lugar esta declarada esta clase
+  errorElement.textContent = errorMessage; // al p le pongo el texto del error automatico del browser
+  errorElement.classList.add("form__input-error_active"); // css rojo
 };
 
-//de cumplir las espacificaciones debe activar el boton submit
+// //de cumplir las espacificaciones debe activar el boton submit
 const hideInputError = (formElement, inputElement) => {
+  console.log("hide");
   const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
   inputElement.classList.remove("form__input_type_error");
   errorElement.classList.remove("form__input-error_active");
   errorElement.textContent = "";
 };
 
-//activa el boton submit
+// esta valida input por individual
 const checkInputValidity = (formElement, inputElement) => {
   if (!inputElement.validity.valid) {
+    // console.log("invalido");
     showInputError(formElement, inputElement, inputElement.validationMessage);
   } else {
+    // console.log("valido");
     hideInputError(formElement, inputElement);
   }
 };
-//valida los campos de input, mediante la pregunta
+
 const hasInvalidInput = (inputList) => {
   return inputList.some((inputElement) => {
     console.log(inputElement.validity);
@@ -31,45 +41,45 @@ const hasInvalidInput = (inputList) => {
   });
 };
 
+//3
 const toggleButtonState = (inputList, buttonElement) => {
-  console.log(toggleButtonState);
-  console.log(hasInvalidInput(inputList));
   if (hasInvalidInput(inputList)) {
     buttonElement.classList.add("button_inactive");
   } else {
     buttonElement.classList.remove("button_inactive");
-  }
+    //parte de la validacion en este momento deberia pintar el boton a negro
+  } //si el input es invalido se agrega la clase, esta valida los dos campos
 };
 
+//2
 const setEventListeners = (formElement) => {
-  //console.log(formElement); llama a uno de los popup
   const inputList = Array.from(formElement.querySelectorAll(".popup__input"));
-  const buttonElement = document.querySelector(".popup__button");
-  console.log(inputList); //si esta regresando los inputs
-  console.log(buttonElement);
-  toggleButtonState(inputList, buttonElement);
+  const buttonElement = formElement.querySelector(".popup__button");
+  // toggleButtonState(inputList, buttonElement);
 
   inputList.forEach((inputElement) => {
-    console.log(inputElement); //cada uno de los inputs
+    toggleButtonState(inputList, buttonElement);
+
     inputElement.addEventListener("input", function () {
+      // console.log("holainput"); // muestra el comportamiento del input cada que se presiona una tecla
+      // console.log(inputElement.validity.valid); //comprueba parte de los requisitos necesarios del input
+      //aqui es el momento en el que el usuario escribe antes de guardar el form
       checkInputValidity(formElement, inputElement);
       toggleButtonState(inputList, buttonElement);
     });
   });
 };
 
+//1
 const enableValidation = () => {
   const formList = Array.from(document.querySelectorAll(".popup__form"));
   // console.log(formList); // formList es el array de los dos popup(forms)
-
   formList.forEach((formElement) => {
-    console.log(formElement); //formElement es cada uno de los popup
-
     formElement.addEventListener("submit", function (evt) {
       evt.preventDefault();
+      // console.log("hola"); // muestra el comportamiento del submit en ambos forms
     });
-
-    setEventListeners(formElement);
+    setEventListeners(formElement); //va a linea 49
   });
 };
 

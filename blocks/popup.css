@@ -50,9 +50,9 @@
 }
 
 .popup__input {
-  color: #c4c4c4;
+  /* color: #c4c4c4; */
   max-width: 358px;
-  margin: auto auto 50px;
+  margin: auto auto 10px;
   width: 100%;
   border: none;
   border-bottom: 1px solid black;
@@ -74,6 +74,7 @@
   padding: 14px 0;
   border-radius: 2px;
   cursor: pointer;
+  margin-top: 20px;
 }
 .popup__button:hover {
   opacity: 0.7;
@@ -102,12 +103,21 @@
 }
 
 .button_inactive {
-  color: #B8B8B8;
-  background: #EDEDED;
+  color: #b8b8b8;
+  background: #ededed;
   pointer-events: none;
   -webkit-user-select: none;
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
 }
-
+.form__input-error_active {
+  color: red;
+  font-size: 10px;
+  margin: auto 35px 20px;
+}
+.form__input_type_error {
+  /* border-bottom: 1px solid red; */
+  border-color: red;
+  outline-color: red;
+}

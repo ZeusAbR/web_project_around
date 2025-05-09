@@ -142,3 +142,24 @@ formButtonAdd.addEventListener("click", function (evt) {
   container.prepend(card);
   popupAdd.classList.remove("popup__open");
 });
+
+//funciones de click a main page
+popup.addEventListener("click", function () {
+  popup.classList.remove("popup__open");
+});
+
+popupAdd.addEventListener("click", function () {
+  popupAdd.classList.remove("popup__open");
+});
+
+popupDisplay.addEventListener("click", function () {
+  popupDisplay.classList.remove("popup__open");
+});
+
+document.addEventListener("keydown", function (event) {
+  if (event.key === "Escape") {
+    popup.classList.remove("popup__open");
+    popupAdd.classList.remove("popup__open");
+    popupDisplay.classList.remove("popup__open");
+  }
+});
