@@ -144,15 +144,21 @@ formButtonAdd.addEventListener("click", function (evt) {
 });
 
 //funciones de click a main page
-popup.addEventListener("click", function () {
+const popupOverlayProfile = document.querySelector("#popupOverlayProfile");
+const popupOverlayAdd = document.querySelector("#popupOverlayAdd");
+const popupOverlayImage = document.querySelector("#popupOverlayImage");
+
+popupOverlayProfile.addEventListener("click", function () {
+  //quiza una declaracion tipo if como validacion pr
+  //estoy llamando al popup , por la clase  quiza se deba llamar por id
   popup.classList.remove("popup__open");
 });
 
-popupAdd.addEventListener("click", function () {
+popupOverlayAdd.addEventListener("click", function () {
   popupAdd.classList.remove("popup__open");
 });
 
-popupDisplay.addEventListener("click", function () {
+popupOverlayImage.addEventListener("click", function () {
   popupDisplay.classList.remove("popup__open");
 });
 
