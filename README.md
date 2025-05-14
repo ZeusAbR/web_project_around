@@ -3,7 +3,7 @@
 descripcion del proyecto y tecnicas y tecnologias utilizadas:
 
 1. trabajo responsivo
-2. implementacion de flex y creacion de cartas
+2. creacion de cartas js 
 3. implementacion de media-querys
 4. creacion de formulario pupup y sus declaraciones y funciones por medio de JS
 

@@ -149,8 +149,6 @@ const popupOverlayAdd = document.querySelector("#popupOverlayAdd");
 const popupOverlayImage = document.querySelector("#popupOverlayImage");
 
 popupOverlayProfile.addEventListener("click", function () {
-  //quiza una declaracion tipo if como validacion pr
-  //estoy llamando al popup , por la clase  quiza se deba llamar por id
   popup.classList.remove("popup__open");
 });
 
