@@ -1,3 +1,6 @@
+import { Card } from "./Card.js";
+import { FormValidator } from "./FormValidator.js";
+
 const openButton = document.querySelector(".profile__edit");
 const closePopupPerfil = document.querySelector("#popup-close-perfil");
 const popup = document.querySelector("#popup-perfil");
@@ -66,84 +69,35 @@ const initialCards = [
     link: "https://practicum-content.s3.us-west-1.amazonaws.com/new-markets/WEB_sprint_5/ES/lago.jpg",
   },
 ];
+
+//genera la carta nueva bajo el template
 const template = document.querySelector(".card");
-
 initialCards.forEach((itemCard) => {
-  const templateCard = document.querySelector(".template").content;
-  const card = templateCard.querySelector(".card").cloneNode(true);
-  const cardName = card.querySelector(".card__name");
-  cardName.textContent = itemCard.name;
-  const cardImage = card.querySelector(".card__image");
-  cardImage.src = itemCard.link;
-  cardImage.alt = itemCard.name;
-
-  const likeButton = card.querySelector("#like-button");
-  likeButton.addEventListener("click", function () {
-    if (likeButton.src == "http://127.0.0.1:5500/images/Vectorlike.png") {
-      likeButton.src = "./images/Vectorunlike.png";
-    } else {
-      likeButton.src = "./images/Vectorlike.png";
-    }
-  });
-  const trashButton = card.querySelector("#trash-button");
-  trashButton.addEventListener("click", function () {
-    card.remove();
-  });
-
-  cardImage.addEventListener("click", function () {
-    popupDisplay.classList.add("popup__open");
-    popupImage.src = itemCard.link;
-    popupParrafo.textContent = itemCard.name;
-    popupImage.alt = itemCard.name;
-  });
-
+  const card = new Card(itemCard.name, itemCard.link, ".template");
+  const cardElement = card.createCard();
+  card.setEvents();
   const container = document.querySelector(".elements");
-  container.append(card);
-});
-
-// abre la img de la carta
-const popupCloseDisplay = document.querySelector("#popup-close-display");
-popupCloseDisplay.addEventListener("click", function () {
-  popupDisplay.classList.remove("popup__open");
+  container.append(cardElement);
 });
 
 const formButtonAdd = document.querySelector("#popupButtonAdd");
 formButtonAdd.addEventListener("click", function (evt) {
   evt.preventDefault();
-  const templateCard = document.querySelector(".template").content;
-  const card = templateCard.querySelector(".card").cloneNode(true);
-  const cardName = card.querySelector(".card__name");
-  cardName.textContent = newTitle.value;
-  const cardImage = card.querySelector(".card__image");
-  cardImage.src = newImage.value;
-  cardImage.alt = newTitle.value;
-
-  const likeButton = card.querySelector("#like-button");
-  likeButton.addEventListener("click", function () {
-    if (likeButton.src == "http://127.0.0.1:5500/images/Vectorlike.png") {
-      likeButton.src = "./images/Vectorunlike.png";
-    } else {
-      likeButton.src = "./images/Vectorlike.png";
-    }
-  });
-  const trashButton = card.querySelector("#trash-button");
-  trashButton.addEventListener("click", function () {
-    card.remove();
-  });
-
-  cardImage.addEventListener("click", function () {
-    popupDisplay.classList.add("popup__open");
-    popupImage.src = newImage.value;
-    popupParrafo.textContent = newTitle.value;
-    popupImage.alt = newTitle.value;
-  });
-
+  const card = new Card(newTitle.value, newImage.value, ".template");
+  const cardElement = card.createCard();
+  card.setEvents();
   const container = document.querySelector(".elements");
-  container.prepend(card);
+  container.prepend(cardElement);
   popupAdd.classList.remove("popup__open");
 });
 
-//funciones de click a main page
+// expande img de la carta
+const popupCloseDisplay = document.querySelector("#popup-close-display");
+popupCloseDisplay.addEventListener("click", function () {
+  popupDisplay.classList.remove("popup__open");
+});
+
+// click a main page
 const popupOverlayProfile = document.querySelector("#popupOverlayProfile");
 const popupOverlayAdd = document.querySelector("#popupOverlayAdd");
 const popupOverlayImage = document.querySelector("#popupOverlayImage");
@@ -160,6 +114,7 @@ popupOverlayImage.addEventListener("click", function () {
   popupDisplay.classList.remove("popup__open");
 });
 
+//esc
 document.addEventListener("keydown", function (event) {
   if (event.key === "Escape") {
     popup.classList.remove("popup__open");
@@ -167,3 +122,25 @@ document.addEventListener("keydown", function (event) {
     popupDisplay.classList.remove("popup__open");
   }
 });
+
+const validationSettings = {
+  inputElement: ".popup__input",
+  submitButtonSelector: ".popup__button",
+  inactiveButtonClass: "button_inactive", // el boton en gris antes de ser validado
+  inputErrorClass: "form__input_type_error", //el perimetro del input errorClass:
+  errorClass: "form__input-error_active", // el texto del error
+};
+
+//@index
+// resultados del constructor
+const profileValidation = new FormValidator(
+  "#popupFormPerfil",
+  validationSettings
+);
+const placeValidation = new FormValidator(
+  "#popupFormPlace",
+  validationSettings
+);
+
+profileValidation.enableValidation();
+placeValidation.enableValidation();
