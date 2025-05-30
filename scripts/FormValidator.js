@@ -1,15 +1,15 @@
 export class FormValidator {
   constructor(form, settings) {
-    this.form = form; //va traer el id de cada form del html
-    this.inputElement = settings.inputElement; //no encuentra al elemento inputElement
+    this.form = form;
+    this.inputElement = settings.inputElement;
     this.submitButtonSelector = settings.submitButtonSelector;
-    this.inactiveButtonClass = settings.inactiveButtonClass; // el boton en gris antes de ser validado
-    this.inputErrorClass = settings.inputErrorClass; //el perimetro del input errorClass:
-    this.errorClass = settings.errorClass; //msg error
+    this.inactiveButtonClass = settings.inactiveButtonClass;
+    this.inputErrorClass = settings.inputErrorClass;
+    this.errorClass = settings.errorClass;
   }
-  // metodos
+  
   enableValidation = () => {
-    this.popupForm = document.querySelector(this.form); //popup perfil,form espera el id del popup
+    this.popupForm = document.querySelector(this.form);
     this.popupForm.addEventListener("submit", function (evt) {
       evt.preventDefault();
     });
@@ -31,16 +31,16 @@ export class FormValidator {
   }
 
   checkInputValidity(inputElement) {
-    if (this.hasInvalidInput()) {
+    if (!inputElement.validity.valid) {
       this.showInputError(inputElement, inputElement.validationMessage);
     } else {
       this.hideInputError(inputElement);
     }
   }
+
   hasInvalidInput() {
     return this.inputList.some((inputElement) => {
-      console.log(inputElement);
-      console.log(inputElement.validity.valid);
+
       return !inputElement.validity.valid;
     });
   }
@@ -49,8 +49,6 @@ export class FormValidator {
     this.errorElement = this.popupForm.querySelector(
       `.${inputElement.id}-error`
     );
-    console.log(this.errorElement);
-    console.log(inputElement);
 
     inputElement.classList.add(this.inputErrorClass);
     this.errorElement.textContent = errorMessage;
@@ -61,10 +59,9 @@ export class FormValidator {
     this.errorElement = this.popupForm.querySelector(
       `.${inputElement.id}-error`
     );
-    console.log(this.errorElement);
-    console.log(inputElement);
+
     inputElement.classList.remove(this.inputErrorClass);
-    this.errorElement.classList.remove(this.errorClass); //no se deberia llamar a una clase que inactive?
+    this.errorElement.classList.remove(this.errorClass);
     this.errorElement.textContent = "";
   }
   toggleButtonState() {
@@ -75,11 +72,3 @@ export class FormValidator {
     }
   }
 }
-
-// const validationSettings = {
-//   inputSelector: ".popup__input",
-//   submitButtonSelector: ".popup__button",
-//   inactiveButtonClass: "button_inactive", // el boton en gris antes de ser validado
-//   inputErrorClass: "form__input_type_error", //el perimetro del input errorClass:
-//   errorClass: "form__input-error_active ", // el texto del error
-// };

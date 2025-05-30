@@ -1,4 +1,6 @@
-import { popupDisplay, popupImage, popupParrafo } from "./utils.js";
+import { popupImage, popupParrafo } from "./utils.js";
+import { popupDisplay } from "./index.js";
+
 
 export class Card {
   constructor(text, image, template) {
@@ -6,7 +8,7 @@ export class Card {
     this.image = image;
     this.template = template;
   }
-  //metodos privados
+
   createCard() {
     this.templateCard = document.querySelector(this.template).content;
     this.card = this.templateCard.querySelector(".card").cloneNode(true);
@@ -31,7 +33,7 @@ export class Card {
       this.displayImage();
     });
   }
-  // instrucciones de cada funcion para el setevents
+
   likeCard() {
     if (this.likeButton.src == "http://127.0.0.1:5500/images/Vectorlike.png") {
       this.likeButton.src = "./images/Vectorunlike.png";
