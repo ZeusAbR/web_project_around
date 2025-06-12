@@ -1,12 +1,10 @@
-import { popupImage, popupParrafo } from "./utils.js";
-import { popupDisplay } from "./index.js";
-
-
 export class Card {
-  constructor(text, image, template) {
+  constructor(text, image, template, handleOpenPopup) {
     this.text = text;
     this.image = image;
+
     this.template = template;
+    this.handleOpenPopup = handleOpenPopup;
   }
 
   createCard() {
@@ -45,10 +43,7 @@ export class Card {
     this.card.remove();
   }
   displayImage() {
-    popupDisplay.classList.add("popup__open");
-    popupImage.src = this.image;
-    popupParrafo.textContent = this.text;
-    popupImage.alt = this.image;
+    this.handleOpenPopup();
   }
 }
 const card = new Card("name", "link", ".template");

@@ -1,6 +1,10 @@
 import { Card } from "./Card.js";
 import { FormValidator } from "./FormValidator.js";
 import { Popup } from "./Popup.js";
+import { PopupWithForm } from "./PopupWithForm.js";
+import { UserInfo } from "./UserInfo.js";
+import { PopupWithImage } from "./PopupWithImage.js";
+import { Section } from "./Section.js";
 
 export const popup = document.querySelector("#popup-perfil");
 export const popupAdd = document.querySelector("#popup-add");
@@ -46,14 +50,6 @@ const initialCards = [
 ];
 
 const template = document.querySelector(".card");
-initialCards.forEach((itemCard) => {
-  const card = new Card(itemCard.name, itemCard.link, ".template");
-  const cardElement = card.createCard();
-  card.setEvents();
-  card.displayImage();
-  const container = document.querySelector(".elements");
-  container.append(cardElement);
-});
 
 const validationSettings = {
   inputElement: ".popup__input",
@@ -76,22 +72,71 @@ const placeValidation = new FormValidator(
 profileValidation.enableValidation();
 placeValidation.enableValidation();
 
-// resultados de clase Popup
-const instanciaPerfil = new Popup("#popup-perfil");
-const instanciaAdd = new Popup("#popup-add");
-const instanciaDisplay = new Popup("#popup-display");
+// resultados de handleFormSubmit from PopupWithForm
+const handleProfileSubmit = (valoresInput) => {
 
+  profileName.textContent = valoresInput.name;
+  profileDescription.textContent = valoresInput.info;
+};
+const instanciaPerfil = new PopupWithForm("#popup-perfil", (valoresInput) =>
+  handleProfileSubmit(valoresInput)
+);
+
+const handlePlaceSubmit = (valoresInput) => {
+  const card = new Card(
+    valoresInput.title,
+    valoresInput.url,
+    ".template",
+    () => {
+      popupWithImage.open(valoresInput.url, valoresInput.title);
+    }
+  );
+  const cardElement = card.createCard();
+  card.setEvents();
+  const container = document.querySelector(".elements");
+
+  container.prepend(cardElement);
+};
+const instanciaAdd = new PopupWithForm(
+  "#popup-add",
+
+  (valoresInput) => handlePlaceSubmit(valoresInput)
+);
+//---------
+const popupWithImage = new PopupWithImage("#popup-display");
+popupWithImage.setEventListeners();
+//---------
+const openSection = new Section(
+  {
+    items: initialCards,
+    renderer: (item) => {
+      const card = new Card(item.name, item.link, ".template", () => {
+        popupWithImage.open(item.link, item.name);
+      });
+      const cardElement = card.createCard();
+      card.setEvents();
+      return cardElement;
+    },
+  },
+  ".elements"
+);
+openSection.renderItems();
+
+// ---------
 const openNewPlace = document.querySelector(".profile__add");
 const openButton = document.querySelector(".profile__edit");
 const formButtonProfile = document.querySelector("#popupButtonProfile");
 const formButtonAdd = document.querySelector("#popupButtonAdd");
 
 instanciaPerfil.setEventListeners();
-instanciaDisplay.setEventListeners();
+
 instanciaAdd.setEventListeners();
 
+const userInfo = new UserInfo(".profile__name", ".profile__description");
 openButton.addEventListener("click", function () {
-  formButtonProfile.classList.add("button_inactive");
+  const userInfoObject = userInfo.getUserInfo();
+  newNameInput.value = userInfoObject.name;
+  newJobInput.value = userInfoObject.description;
   instanciaPerfil.open();
 });
 

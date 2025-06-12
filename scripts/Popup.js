@@ -30,7 +30,5 @@ export class Popup {
         this.close();
       }
     });
-
-    // traer el evento de esc y de click afuera
   }
 }
