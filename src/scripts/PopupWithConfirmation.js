@@ -13,9 +13,6 @@ export class PopupWithConfirmation extends Popup {
     this.popupForm.addEventListener("submit", function (evt) {
       evt.preventDefault();
       apiDelete();
-
-      console.log("SIejecutado");
     });
   }
 }
-
