@@ -1,10 +1,22 @@
 export class Card {
-  constructor(text, image, template, handleOpenPopup) {
+  constructor(
+    text,
+    image,
+    isLiked,
+    template,
+    handleOpenPopup,
+    handleDeleteCard,
+    handleLikeCard,
+    handleDislikeCard
+  ) {
     this.text = text;
     this.image = image;
-
+    this.isLiked = isLiked;
     this.template = template;
     this.handleOpenPopup = handleOpenPopup;
+    this.handleDeleteCard = handleDeleteCard;
+    this.handleLikeCard = handleLikeCard;
+    this.handleDislikeCard = handleDislikeCard;
   }
 
   createCard() {
@@ -17,15 +29,26 @@ export class Card {
     this.cardName.textContent = this.text;
     this.cardImage.alt = this.text;
     this.cardImage.src = this.image;
+    this.likeCard();
     return this.card;
   }
 
   setEvents() {
     this.likeButton.addEventListener("click", () => {
-      this.likeCard();
+      if (this.isLiked) {
+        this.handleDislikeCard().then(() => {
+          this.isLiked = false;
+          this.likeCard();
+        });
+      } else {
+        this.handleLikeCard().then(() => {
+          this.isLiked = true;
+          this.likeCard();
+        });
+      }
     });
     this.trashButton.addEventListener("click", () => {
-      this.deleteCard();
+      this.handleDeleteCard();
     });
     this.cardImage.addEventListener("click", () => {
       this.displayImage();
@@ -33,7 +56,7 @@ export class Card {
   }
 
   likeCard() {
-    if (this.likeButton.src == "http://127.0.0.1:5500/images/Vectorlike.png") {
+    if (!this.isLiked) {
       this.likeButton.src = "./images/Vectorunlike.png";
     } else {
       this.likeButton.src = "./images/Vectorlike.png";
@@ -46,4 +69,3 @@ export class Card {
     this.handleOpenPopup();
   }
 }
-const card = new Card("name", "link", ".template");

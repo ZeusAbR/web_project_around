@@ -50,6 +50,35 @@
   opacity: 0.7;
 }
 
+.profile__superposition {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.profile__pencil {
+  display: none;
+  width: 26px;
+  height: 26px;
+  position: absolute;
+  z-index: 1;
+}
+.profile__superposition:hover .profile__pencil {
+  display: block;
+}
+
+.profile__superposition:hover .profile__gradient {
+  background-color: #313030;
+  color: white;
+}
+.profile__gradient {
+  width: 168px;
+  height: 168px;
+  border-radius: 50%;
+  position: absolute;
+  opacity: 0.7;
+  background-color: transparent;
+}
 @media screen and (width<550px) {
   .profile {
     flex-direction: column;

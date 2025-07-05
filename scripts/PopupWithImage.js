@@ -9,14 +9,14 @@ export class PopupWithImage extends Popup {
   }
 
   open(imageSrc, imageCaption) {
-    // Configurar la imagen y su leyenda
+    
     this._image.src = imageSrc;
     this._image.alt = imageCaption;
     this._caption.textContent = imageCaption;
 
     super.open();
   }
-  
+
   setEventListeners() {
     super.setEventListeners();
   }

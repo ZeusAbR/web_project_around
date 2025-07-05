@@ -28,7 +28,7 @@
   height: 19px;
   cursor: pointer;
 }
-.card__vector:hover{
+.card__vector:hover {
   opacity: 0.7;
 }
 .card__image {
