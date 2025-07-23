@@ -25,7 +25,12 @@ const openProfileButton = document.querySelector(".profile__edit");
 const formButtonProfile = document.querySelector("#popupButtonProfile");
 const formButtonAdd = document.querySelector("#popupButtonAdd");
 const template = document.querySelector(".card");
-
+//id matching
+let currentUserId = "da0cd5a0d0b08c965ad2cffa";
+// const isCardOwner = (cardOwnerId) => {
+//   return currentUserId === cardOwnerId;
+// };
+//
 const validationSettings = {
   inputElement: ".popup__input",
   submitButtonSelector: ".popup__button",
@@ -61,7 +66,7 @@ const instanciaPerfil = new PopupWithForm("#popup-perfil", (valoresInput) =>
   handleProfileSubmit(valoresInput)
 );
 
-// #4check--- popup for inputs on new card
+// #4check---
 const handlePlaceSubmit = (valoresInput) => {
   const savingButton = document.querySelector("#popupButtonAdd");
   savingButton.textContent = "Guardando...";
@@ -85,6 +90,8 @@ const handlePlaceSubmit = (valoresInput) => {
       () => {
         return apiDislikeCard(item._id);
       }
+      // item.owner._id || currentUserId,
+      // isCardOwner
     );
     const cardElement = card.createCard();
     card.setEvents();
@@ -110,6 +117,7 @@ const userInfo = new UserInfo(
   ".profile__picture"
 );
 api.getUserInfo().then((res) => {
+  currentUserId = res._id;
   userInfo.setAvatar(res.avatar);
   userInfo.setUserInfo(res.name, res.about);
   openProfileButton.addEventListener("click", function () {
@@ -140,15 +148,10 @@ const handleDeleteCard = (cardId) => {
     const deleteButton = document.querySelector("#popup-delete .popup__button");
     deleteButton.textContent = "Eliminando...";
 
-    return api
-      .deleteCard(cardId)
-      .then((response) => {
-        deleteButton.textContent = "Sí";
-        deleteWithConfirmation.close();
-      })
-      .catch((error) => {
-        deleteButton.textContent = "Sí";
-      });
+    return api.deleteCard(cardId).then((response) => {
+      deleteButton.textContent = "Sí";
+      deleteWithConfirmation.close();
+    });
   });
 };
 //-----#8check like and dislike
@@ -160,39 +163,45 @@ const apiDislikeCard = (cardId) => {
   return api.dislikeCard(cardId).then((response) => {});
 };
 // #2check--
-api.getInitialCards().then((initialCards) => {
-  const openSection = new Section(
-    {
-      items: initialCards,
-      renderer: (item) => {
-        const card = new Card(
-          item.name,
-          item.link,
-          item.isLiked,
-          ".template",
-          () => {
-            popupWithImage.open(item.link, item.name);
-          },
-          (cardId) => {
-            handleDeleteCard(item._id);
-            card.deleteCard();
-          },
-          () => {
-            return apiLikeCard(item._id);
-          },
-          () => {
-            return apiDislikeCard(item._id);
-          }
-        );
-        const cardElement = card.createCard();
-        card.setEvents();
-        return cardElement;
+api
+  .getInitialCards()
+  .then((initialCards) => {
+    const openSection = new Section(
+      {
+        items: [...initialCards],
+        renderer: (item) => {
+          const card = new Card(
+            item.name,
+            item.link,
+            item.isLiked,
+            ".template",
+            () => {
+              popupWithImage.open(item.link, item.name);
+            },
+            (cardId) => {
+              handleDeleteCard(item._id);
+              card.deleteCard();
+            },
+            () => {
+              return apiLikeCard(item._id);
+            },
+            () => {
+              return apiDislikeCard(item._id);
+            }
+          );
+          const cardElement = card.createCard();
+          card.setEvents();
+          return cardElement;
+        },
       },
-    },
-    ".elements"
-  );
-  openSection.renderItems();
-});
+      ".elements"
+    );
+    openSection.renderItems();
+  })
+  .catch((error) => {
+    console.log("texto");
+    console.log(error);
+  });
 
 //--#9---avatar
 const pencilAvatar = document.querySelector(".profile__pencil");

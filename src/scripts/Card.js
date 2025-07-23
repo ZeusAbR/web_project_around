@@ -69,3 +69,5 @@ export class Card {
     this.handleOpenPopup();
   }
 }
+
+//crear la homologacion de los  id //

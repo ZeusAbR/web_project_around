@@ -9,10 +9,17 @@ export class PopupWithConfirmation extends Popup {
   }
 
   openConfirmation(apiDelete) {
+    this.apiDelete = apiDelete;
     this.popupForm = document.querySelector("#popupFormDelete");
-    this.popupForm.addEventListener("submit", function (evt) {
-      evt.preventDefault();
-      apiDelete();
-    });
+    this.popupForm.addEventListener("submit", this.deleteFromApi);
+  }
+  close() {
+    super.close();
+    this.popupForm.removeEventListener("submit", this.deleteFromApi);
+  }
+
+  deleteFromApi(evt) {
+    evt.preventDefault();
+    this.apiDelete();
   }
 }

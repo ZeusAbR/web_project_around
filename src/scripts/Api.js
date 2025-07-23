@@ -8,18 +8,34 @@ class Api {
     return fetch(this.baseUrl + "/cards/", {
       method: "GET",
       headers: this.headers,
-    }).then((res) => {
-      return res.json();
-    });
+    })
+      .then((res) => {
+        if (res.ok) {
+          return res.json();
+        } else {
+          throw Error("hubo un error");
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   } //------
   //#1 check----
   getUserInfo() {
     return fetch(this.baseUrl + "/users/me", {
       method: "GET",
       headers: this.headers,
-    }).then((res) => {
-      return res.json();
-    });
+    })
+      .then((res) => {
+        if (res.ok) {
+          return res.json();
+        } else {
+          throw Error("hubo un error");
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   } //------
   //#3 check----
   editProfile(profileName, profileDescription) {
@@ -30,21 +46,38 @@ class Api {
         name: profileName,
         about: profileDescription,
       }),
-    }).then((res) => {
-      return res.json();
-    });
+    })
+      .then((res) => {
+        if (res.ok) {
+          return res.json();
+        } else {
+          throw Error("hubo un error");
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   } //----#4check-----
   addNewCard(title, url) {
     return fetch(this.baseUrl + "/cards/", {
       method: "POST",
       headers: this.headers,
       body: JSON.stringify({
+        // owner: "da0cd5a0d0b08c965ad2cffa",
         name: title,
         link: url,
       }),
-    }).then((res) => {
-      return res.json();
-    });
+    })
+      .then((res) => {
+        if (res.ok) {
+          return res.json();
+        } else {
+          throw Error("hubo un error");
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   } //------
 
   //#8check----anadir y eliminar me gusta
@@ -52,27 +85,51 @@ class Api {
     return fetch(this.baseUrl + "/cards/" + cardId + "/likes", {
       method: "PUT",
       headers: this.headers,
-    }).then((res) => {
-      return res.json();
-    });
+    })
+      .then((res) => {
+        if (res.ok) {
+          return res.json();
+        } else {
+          throw Error("hubo un error");
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   }
 
   dislikeCard(cardId) {
     return fetch(this.baseUrl + "/cards/" + cardId + "/likes", {
       method: "DELETE",
       headers: this.headers,
-    }).then((res) => {
-      return res.json();
-    });
+    })
+      .then((res) => {
+        if (res.ok) {
+          return res.json();
+        } else {
+          throw Error("hubo un error");
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   }
   //#6,7check----
   deleteCard(cardId) {
     return fetch(this.baseUrl + `/cards/${cardId}`, {
       method: "DELETE",
       headers: this.headers,
-    }).then((res) => {
-      return res.json();
-    });
+    })
+      .then((res) => {
+        if (res.ok) {
+          return res.json();
+        } else {
+          throw Error("hubo un error");
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   }
 
   //#9----
@@ -83,9 +140,17 @@ class Api {
       body: JSON.stringify({
         avatar: avatarData,
       }),
-    }).then((res) => {
-      return res.json();
-    });
+    })
+      .then((res) => {
+        if (res.ok) {
+          return res.json();
+        } else {
+          throw Error("hubo un error");
+        }
+      })
+      .catch((error) => {
+        console.log(error);
+      });
   }
 }
 
