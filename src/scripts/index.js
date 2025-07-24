@@ -25,12 +25,9 @@ const openProfileButton = document.querySelector(".profile__edit");
 const formButtonProfile = document.querySelector("#popupButtonProfile");
 const formButtonAdd = document.querySelector("#popupButtonAdd");
 const template = document.querySelector(".card");
-//id matching
+
 let currentUserId = "da0cd5a0d0b08c965ad2cffa";
-// const isCardOwner = (cardOwnerId) => {
-//   return currentUserId === cardOwnerId;
-// };
-//
+
 const validationSettings = {
   inputElement: ".popup__input",
   submitButtonSelector: ".popup__button",
@@ -81,8 +78,7 @@ const handlePlaceSubmit = (valoresInput) => {
         popupWithImage.open(valoresInput.url, valoresInput.title);
       },
       () => {
-        handleDeleteCard(item._id);
-        card.deleteCard();
+        handleDeleteCard(item._id, card);
       },
       () => {
         return apiLikeCard(item._id);
@@ -90,8 +86,6 @@ const handlePlaceSubmit = (valoresInput) => {
       () => {
         return apiDislikeCard(item._id);
       }
-      // item.owner._id || currentUserId,
-      // isCardOwner
     );
     const cardElement = card.createCard();
     card.setEvents();
@@ -141,7 +135,7 @@ openNewPlace.addEventListener("click", function () {
 const deleteWithConfirmation = new PopupWithConfirmation("#popup-delete");
 deleteWithConfirmation.setEventListeners();
 
-const handleDeleteCard = (cardId) => {
+const handleDeleteCard = (cardId, card) => {
   deleteWithConfirmation.open();
 
   deleteWithConfirmation.openConfirmation(() => {
@@ -151,6 +145,7 @@ const handleDeleteCard = (cardId) => {
     return api.deleteCard(cardId).then((response) => {
       deleteButton.textContent = "Sí";
       deleteWithConfirmation.close();
+      card.deleteCard();
     });
   });
 };
@@ -179,8 +174,7 @@ api
               popupWithImage.open(item.link, item.name);
             },
             (cardId) => {
-              handleDeleteCard(item._id);
-              card.deleteCard();
+              handleDeleteCard(item._id, card);
             },
             () => {
               return apiLikeCard(item._id);

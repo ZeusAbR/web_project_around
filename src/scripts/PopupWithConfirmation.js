@@ -6,6 +6,7 @@ export class PopupWithConfirmation extends Popup {
 
     this._popup = document.querySelector(popupSelector);
     this._form = this._popup.querySelector(".popup-delete");
+    this.deleteFromApi = this.deleteFromApi.bind(this);
   }
 
   openConfirmation(apiDelete) {

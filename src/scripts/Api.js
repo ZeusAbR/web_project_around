@@ -63,7 +63,6 @@ class Api {
       method: "POST",
       headers: this.headers,
       body: JSON.stringify({
-        // owner: "da0cd5a0d0b08c965ad2cffa",
         name: title,
         link: url,
       }),
